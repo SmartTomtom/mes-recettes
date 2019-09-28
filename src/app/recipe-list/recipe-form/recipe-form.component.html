@@ -1,0 +1,48 @@
+<div class="col-xs-8 col-xs-offset-2">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmitForm()">
+        <div class="form-group">
+            <h2>Nom de la recette</h2>
+            <input type="text" id="title" class="form-control" formControlName="title">
+        </div>
+        <div formArrayName="ingredients">
+            <h2>Ingrédients</h2>
+            <div class="form-inline" *ngFor="let ingredientControl of getIngredients().controls; let i = index"
+                [formGroupName]="i">
+                <div class="form-group" style="margin-right:4px;margin-bottom:4px">
+                    <label for="name" style="margin-right:4px">Ingrédient</label>
+                    <input id="name" type="text" class="form-control" formControlName="name">
+                </div>
+                <div class="form-group" style="margin-right:4px;margin-bottom:4px">
+                    <label for="quantity" style="margin-right:4px">Quantité</label>
+                    <input id="quantity" type="number" class="form-control" formControlName="quantity"
+                        style="width: 80px">
+                </div>
+                <div class="form-group" style="margin-right:4px;margin-bottom:4px">
+                    <select id="unity" class="form-control" formControlName="unity">
+                        <option *ngFor="let unity of getUnities() | keyvalue" value="{{ unity.value }}">
+                            {{ unity.value }}</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-danger" (click)="onRemoveIngredient(i)"
+                    style="margin-right:4px;margin-bottom:4px">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+            <button type="button" class="btn btn-success" (click)="onAddIngredient()">Ajouter un ingrédient</button>
+        </div>
+        <div formArrayName="tasks" style="margin-bottom:4px">
+            <h2>Etapes de préparation</h2>
+            <div class="form-group" *ngFor="let taskControl of getTasks().controls; let i = index">
+                <h3>
+                    <span>Etape {{i+1}}</span>
+                    <button type="button" class="btn btn-danger pull-right" (click)="onRemoveTask(i)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </h3>
+                <textarea rows="2" class="form-control" [formControlName]="i"></textarea>
+            </div>
+            <button type="button" class="btn btn-success" (click)="onAddTask()">Ajouter une étape</button>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="recipeForm.invalid">Sauvegarder</button>
+    </form>
+</div>
