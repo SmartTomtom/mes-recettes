@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { RecipesService } from 'src/app/services/recipes.service';
-import { Recipe } from 'src/app/models/recipe.model';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormArray } from '@angular/forms';
+import { RecipesService } from '../../services/recipes.service';
+import { Recipe } from '../../models/recipe.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Unity, Quantity } from 'src/app/models/quantity.model';
-import { Ingredient } from 'src/app/models/ingredient.model';
+import { Unity, Quantity } from '../../models/quantity.model';
+import { Ingredient } from '../../models/ingredient.model';
 
 @Component({
   selector: 'app-recipe-form',
@@ -13,11 +13,11 @@ import { Ingredient } from 'src/app/models/ingredient.model';
 })
 export class RecipeFormComponent implements OnInit {
 
-  recipeForm: FormGroup
+  recipeForm: UntypedFormGroup
   editMode: boolean = false;
   id: number;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
     private recipeService: RecipesService,
     private route: ActivatedRoute,
     private router: Router) { }
@@ -85,8 +85,8 @@ export class RecipeFormComponent implements OnInit {
     this.router.navigate(['/recipes']);
   }
 
-  getIngredients(): FormArray {
-    return this.recipeForm.get('ingredients') as FormArray;
+  getIngredients(): UntypedFormArray {
+    return this.recipeForm.get('ingredients') as UntypedFormArray;
   }
 
   onAddIngredient() {
@@ -102,8 +102,8 @@ export class RecipeFormComponent implements OnInit {
     this.getIngredients().removeAt(index);
   }
   
-  getTasks(): FormArray {
-    return this.recipeForm.get('tasks') as FormArray;
+  getTasks(): UntypedFormArray {
+    return this.recipeForm.get('tasks') as UntypedFormArray;
   }
 
   onAddTask() {

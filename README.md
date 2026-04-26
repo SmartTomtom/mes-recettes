@@ -1,27 +1,47 @@
 # MesRecettes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+Petite application Angular pour gérer mes recettes de cuisine. Une recette est composée d'un titre, d'une liste d'ingrédients (quantité + unité + nom) et d'étapes de préparation.
 
-## Development server
+Construit avec Angular 18 (NgModules) sur Node 20. Les recettes sont stockées en mémoire — elles ne sont pas persistées entre les rechargements.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Prérequis
 
-## Code scaffolding
+- Node 20+
+- npm 10+
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+```
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Développement
 
-## Running unit tests
+```
+npm start
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Lance le serveur de développement sur `http://localhost:4200/`. Le rechargement à chaud est activé.
 
-## Running end-to-end tests
+## Build de production
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+npm run build
+```
 
-## Further help
+Les artefacts sont générés dans `dist/mes-recettes/`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Tests
+
+```
+npm test
+```
+
+Lance Karma + Jasmine. Le projet n'embarque actuellement aucun spec — les boilerplates auto-générés ont été supprimés.
+
+## État du projet
+
+Quelques pages sont des placeholders qui n'ont jamais été implémentés :
+
+- `auth/signin` et `auth/signup` (formulaires vides)
+- `AuthService` et `AuthGuardService` (services vides, le guard n'est rattaché à aucune route)
